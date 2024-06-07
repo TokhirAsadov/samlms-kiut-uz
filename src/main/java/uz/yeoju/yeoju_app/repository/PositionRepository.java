@@ -32,11 +32,11 @@ public interface PositionRepository extends JpaRepository<Position, Long> {
     List<UserForTeacherSaveItem> getPositionsForTeacherSaving2(@Param("userId") String userId);
 
     @Query(value = "select CAST(p.id as varchar) as value,p.userPositionName as label from Dekanat d join Dekanat_Position dp on d.id = dp.Dekanat_id join Position p on dp.positions_id = p.id\n" +
-            "    join Staff dn on d.id = dn.dekanat_id where dn.user_id=:userId",nativeQuery = true)
+            "  where d.owner_id=:userId",nativeQuery = true)
     List<UserForTeacherSaveItem> getPositionsForDekanSaving(@Param("userId") String userId);
 
     @Query(value = "select CAST(p.id as varchar) as value,p.userPositionName as label from Section s join Section_Position sp on s.id = sp.Section_id join Position p on sp.positions_id = p.id\n" +
-            "  join Staff dn on s.id = dn.section_id where dn.user_id=:userId",nativeQuery = true)
+            "  where s.owner_id=:userId",nativeQuery = true)
     List<UserForTeacherSaveItem> getPositionsForSectionSaving(@Param("userId") String userId);
 
 
