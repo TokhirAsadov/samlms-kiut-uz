@@ -94,7 +94,7 @@ public interface KafedraRepository extends JpaRepository<Kafedra, String> {
 //            ") as f2 on f2.section_id = f1.section_id",nativeQuery = true)
 //    TeacherComeStatistics getStaffComeCountForRektor(@Param("kafedraId") String kafedraId);
 
-    @Query(value = "select f1.count as comeCount,f2.count as allCount from (\n" +
+    @Query(value = "select f1.count as comeCount,(f2.count+1)as allCount from (\n" +
             "       select card.section_id,count(card.cardNo) as count from\n" +
             "           (select  u.RFID as cardNo, S.section_id from acc_monitor_log al\n" +
             "                     join users u on cast(u.RFID as varchar) = cast(al.card_no as varchar) COLLATE Chinese_PRC_CI_AS\n" +
@@ -133,7 +133,7 @@ public interface KafedraRepository extends JpaRepository<Kafedra, String> {
 //            ") as f2 on f2.dekanat_id = f1.dekanat_id\n",nativeQuery = true)
 //    TeacherComeStatistics getStaffComeCountForRektor2(@Param("kafedraId") String kafedraId);
 
-    @Query(value = "select f1.count as comeCount,f2.count as allCount from (\n" +
+    @Query(value = "select f1.count as comeCount,(f2.count+1) as allCount from (\n" +
             "       select card.dekanat_id,count(card.cardNo) as count from\n" +
             "           (select  u.RFID as cardNo,S.dekanat_id\n" +
             "            from acc_monitor_log al\n" +
