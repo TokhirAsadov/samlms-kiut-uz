@@ -10,9 +10,9 @@ public interface VedimostService {
 
     ApiResponse getVedimostByKafedra(String kafedraId,String educationYearId);
 
-    ApiResponse getVedimostByLessonId(String lessonId, String educationYearId);
-    ApiResponse getVedimostByTeacherId(String teacherId, String educationYearId);
-    ApiResponse getVedimostByTeacherIdAndLessonId(String teacherId, String educationYearId,String lessonId);
+    ApiResponse getVedimostByLessonId(String type,String dekanatOrKafedraId,String lessonId, String educationYearId);
+    ApiResponse getVedimostByTeacherId(String type,String dekanatOrKafedraId,String teacherId, String educationYearId);
+    ApiResponse getVedimostByTeacherIdAndLessonId(String type,String dekanatOrKafedraId,String teacherId, String educationYearId,String lessonId);
 
     ApiResponse getAllVedimostByKafedra(String kafedraId);
 
@@ -24,21 +24,35 @@ public interface VedimostService {
 
     ApiResponse getAllVedimostByGroupId(String groupId);
 
-    ApiResponse getVedimostByGroupId(String groupId, String educationYearId);
-    ApiResponse getVedimostByFacultyId(String facultyId, String educationYearId);
+    ApiResponse getVedimostByGroupId(String type,String dekanatOrKafedraId,String groupId, String educationYearId);
+    ApiResponse getVedimostByFacultyId(String type,String dekanatOrKafedraId,String facultyId, String educationYearId);
 
     ApiResponse getVedimostForBeingDone(String teacherId, String lessonId, String groupId, String educationYearId);
-    ApiResponse getVedimostByTeacherIdAndLessonIdAndEducationYearIdAndFacultyId(String teacherId, String lessonId, String facultyId, String educationYearId);
+    ApiResponse getVedimostByTeacherIdAndLessonIdAndEducationYearIdAndFacultyId(String dekanatOrKafedraId,String teacherId, String lessonId, String facultyId, String educationYearId,String type);
 
-    ApiResponse getVedimostByTeacherIdAndFacultyId(String teacherId, String facultyId, String educationYearId);
+    ApiResponse getVedimostByTeacherIdAndFacultyId(String type,String dekanatOrKafedraId,String teacherId, String facultyId, String educationYearId);
 
-    ApiResponse getVedimostByLessonIdAndFacultyId(String educationYearId, String lessonId, String facultyId);
+    ApiResponse getVedimostByLessonIdAndFacultyId(String type,String dekanatOrKafedraId,String educationYearId, String lessonId, String facultyId);
 
-    ApiResponse getVedimostByLessonIdAndGroupId(String educationYearId, String lessonId, String groupId);
+    ApiResponse getVedimostByLessonIdAndGroupId(String type,String dekanatOrKafedraId,String educationYearId, String lessonId, String groupId);
 
-    ApiResponse getVedimostByTeacherIdAndGroupId(String teacherId, String educationYearId, String groupId);
+    ApiResponse getVedimostByTeacherIdAndGroupId(String type,String dekanatOrKafedraId,String teacherId, String educationYearId, String groupId);
 
-    ApiResponse getVedimostByEducationYearId(String educationYearId);
+    ApiResponse getVedimostByEducationYearId(String type,String dekanatOrKafedraId,String educationYearId);
 
-    ApiResponse getLast50Vedimost();
+    ApiResponse getLast50Vedimost(String type,String dekanatOrKafedraId);
+
+    ApiResponse getVedimostByLevel(String type,String dekanatOrKafedraId,Integer level, String educationYearId);
+
+    ApiResponse getVedimostByLessonIdAndLevel(String type,String dekanatOrKafedraId,String educationYearId, String lessonId, Integer level);
+
+    ApiResponse getVedimostByFacultyIdAndLevel(String type,String dekanatOrKafedraId,String educationYearId, String facultyId, Integer level);
+
+    ApiResponse getVedimostByTeacherIdAndLevel(String type, String dekanatOrKafedraId,String teacherId, Integer level, String educationYearId);
+
+    ApiResponse getDataAboutVedimostByDekanat(String dekanatId, String educationYearId,String condition);
+
+    ApiResponse getDataAboutVedimostByKafedra(String kafedraId, String educationYearId,String condition);
+
+    ApiResponse getDataAboutVedimostForMonitoring(String educationYearId, String condition);
 }
